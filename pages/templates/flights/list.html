@@ -1,0 +1,42 @@
+{% extends 'pages/base.html' %}
+{% block title %}List flights{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">List flights</div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Flight type</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for flight in flights %}
+                            <tr>
+                                <td>{{ flight.id }}</td>
+                                {% if flight.flightType == 'International' %}
+                                <td style="font-weight: bold;">{{ flight.name }}</td>
+                                {% else %}
+                                <td>{{ flight.name }}</td>
+                                {% endif %}
+                                <td>{{ flight.flightType }}</td>
+                                {% if flight.flightType == 'National' %}
+                                <td style="color: blue;">{{ flight.price }}</td>
+                                {% else %}
+                                <td>{{ flight.price }}</td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
